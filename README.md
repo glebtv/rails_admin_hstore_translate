@@ -1,6 +1,9 @@
-# RailsAdminGlobalizeField
+# RailsAdminHstoreTranslate
 
-  RailsAdminGlobalizeField adds tabbed interface to [rails_admin](https://github.com/sferik/rails_admin) for multilingual models (using [globalize](https://github.com/globalize/globalize) gem)
+  RailsAdminHstoreTranslate adds tabbed interface to [rails_admin](https://github.com/sferik/rails_admin) for multilingual models (using [hstore_translate](https://github.com/Leadformance/hstore_translate) gem)
+
+  Heavily based on [RailsAdminGlobalizeField](https://github.com/scarfacedeb/rails_admin_globalize_field) and [rails_admin_mongoid_localize_field](https://github.com/sudosu/rails_admin_mongoid_localize_field)
+
 
   It adds custom field type that you can use for globalize translations association.
 
@@ -9,15 +12,10 @@
 
 ## Installation
 
-Add and configure globalize gem first.
-
-``` ruby
-  gem 'globalize', '~> 4.0'
-```
 
 Then add this gem and run `bundle`
 ``` ruby
-  gem 'rails_admin_globalize_field'
+  gem 'rails_admin_hstore_translate'
 ```
 
 
@@ -25,59 +23,21 @@ Then add this gem and run `bundle`
 
 > Don't forget to set I18n.available_locale config, because it uses that to determine what tabs to show
 
-Add **translation** models to `config.included_models` in `initializers/rails_admin.rb`:
-``` ruby
-  config.included_models = ['Model','Model::Translation']
-```
-
-Add `accepts_nested_attributes_for` for translations to your **translated** model.
-
-``` ruby
-  class Model < ActiveRecord::Base
-    translates :title, :desc
-    accepts_nested_attributes_for :translations, allow_destroy: true
-  end
-```
-
-Add configuration to your **translated** model and associated **translation** model. `:locale` field is always required.
+Add configuration to your model. `:locale` field is always required.
 ``` ruby
   config.model 'Post' do
-    configure :translations, :globalize_tabs
-  end
-
-  config.model 'Model::Translation' do
-    visible false
-    configure :locale, :hidden do
-      help ''
+    field :name do
+      tabbed false
     end
-    include_fields :locale, :title, :desc
+    field :description do
+      tabbed false
+    end
   end
 ```
-
-
-Add this stylesheet into app/assets/stylesheets/rails_admin/theming.scss:
-``` css
-  /*
-   *= require rails_admin/ra.globalize_tabs
-  */
-```
-
-
-If you need to add validation to the translation class, you can add it on `translation_class` inside **translated** model:
-```ruby
-  translation_class.validates :title, presence: true
-```
-
-
-## Known issues
-
-If you need to use `null: false` options on any column in translations table, you'll have to use [this globalize fork](https://github.com/scarfacedeb/globalize/tree/before_callbacks) for now.
-See: https://github.com/globalize/globalize/issues/325
-
 
 ## Screenshot
 
-![Screenshot](https://raw.github.com/scarfaceDeb/rails_admin_globalize_field/screenshots/screenshots/shot1.png)
+![Screenshot](https://camo.githubusercontent.com/524bee72c730418105c4498ed4cdf40f861cfb1e/68747470733a2f2f7261772e6769746875622e636f6d2f7375646f73752f73637265656e73686f74732f6d61737465722f7261696c735f61646d696e5f6d6f6e676f69645f6c6f63616c697a655f6669656c64732e706e67)
 
 ## Contributing
 
@@ -86,3 +46,4 @@ See: https://github.com/globalize/globalize/issues/325
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create new Pull Request
+
