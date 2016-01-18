@@ -3,5 +3,5 @@
     - val = form.object.send("#{field.name}_translations").try(:[], locale.to_s)
     %div
       = localized_field.label locale
-      = localized_field.send field_type, locale, html_attributes.reverse_merge({ :value => field.value.try(:[], locale.to_s) })
+      = localized_field.send field_type, locale, html_attributes.reverse_merge({ :value => val })
 
