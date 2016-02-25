@@ -1,5 +1,11 @@
 # RailsAdminHstoreTranslate
 
+## Changes
+
+### 0.2
+  
+  No longer depend on hstore_translate to allow usage of [jsonb_translate](https://github.com/glebtv/jsonb_translate)
+
   RailsAdminHstoreTranslate adds tabbed interface to [rails_admin](https://github.com/sferik/rails_admin) for multilingual models (using [hstore_translate](https://github.com/Leadformance/hstore_translate) gem)
 
   Heavily based on [RailsAdminGlobalizeField](https://github.com/scarfacedeb/rails_admin_globalize_field) and [rails_admin_mongoid_localize_field](https://github.com/sudosu/rails_admin_mongoid_localize_field)
