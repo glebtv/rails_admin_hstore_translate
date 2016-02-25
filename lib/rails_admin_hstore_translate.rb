@@ -1,6 +1,5 @@
 require 'rails_admin_hstore_translate/engine'
 require 'rails_admin'
-require 'hstore_translate'
 
 require 'active_support/concern'
 require 'rails_admin/config/fields'
