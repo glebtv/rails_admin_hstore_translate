@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["glebtv@gmail.com"]
   spec.description   = %q{Adds tabbed interface and custom field type for hstore_translate translations to rails_admin}
   spec.summary       = %q{Tabbed interface and custom field type for hstore_translate translations for rails_admin}
-  spec.homepage      = "https://github.com/glebtv/rails_admin_hstore_translate"
+  spec.homepage      = "https://gitlab.com/rocket-science/rails_admin_translate"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files`.split($/)
@@ -18,9 +18,10 @@ Gem::Specification.new do |spec|
   spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
   spec.require_paths = ["lib"]
 
-  spec.add_dependency 'rails'
-  spec.add_dependency 'rails_admin'
-
-  spec.add_development_dependency 'bundler'
-  spec.add_development_dependency 'rake'
+  spec.add_dependency 'rails_admin_translate'
+spec.post_install_message = <<-MESSAGE
+!    The 'rails_admin_hstore_translate' gem has been deprecated and has been replaced by 'rails_admin_translate'.
+!    See: https://rubygems.org/gems/rails_admin_translate
+!    And: https://gitlab.com/rocket-science/rails_admin_translate
+MESSAGE
 end
